@@ -5,6 +5,10 @@ const api = axios.create({withCredentials: true})
 export const addReservation = async (room_number, room_type, hotel_id, email, check_in_date, duration_days, booking_price, special_request) => {
     const payment_status = false
     const response = await api.post(`${SERVER_API_URL}/reservations`, {room_number, room_type, hotel_id, email, check_in_date, duration_days, booking_price, special_request, payment_status})
+    if (response.status === 503) {
+        alert("Something Wrong with Your Reservation!")
+        return response.status
+    }
     return response.data
 }
 

@@ -18,12 +18,9 @@ const HotelDetails = () => {
     const {hotelId} = useParams();
     const handleAddReservation = async (room_number, room_type, booking_price) => {
         if (profile) {
-            const rsp = await reservationService.addReservation(room_number, room_type, hotelId, profile.email, checkInDate, nights, booking_price, specialRequest)
-            if (rsp.err) {
-                alert("Something Wrong with Your Request!")
-            } else {
+            await reservationService.addReservation(room_number, room_type, hotelId, profile.email, checkInDate, nights, booking_price, specialRequest).then(
                 alert("Hotel Room Successfully Booked!")
-            }
+            )
         }
     }
     const searchHotelById = async () => {
