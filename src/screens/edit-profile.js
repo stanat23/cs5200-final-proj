@@ -29,6 +29,10 @@ const EditProfile = () => {
             alert("phone number needs to be all digits!")
             return
         }
+        if (phone.length>12 || phone.length<3) {
+            alert("phone number too long or too short!")
+            return
+        }
         await userService.updateUser(profile.email, phone, first_name, last_name, date_of_birth)
         navigate(`/hotels`)
     }
